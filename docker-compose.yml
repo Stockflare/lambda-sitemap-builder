@@ -1,4 +1,4 @@
-builder:
+sitemap:
   build: .
   volumes:
     - .:/stockflare

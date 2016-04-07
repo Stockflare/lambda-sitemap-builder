@@ -1,14 +1,19 @@
 {
   "name": "lambda-sitemap-builder",
   "description": "Build a sitemap based on Elasticsaearch index",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "private": "true",
   "dependencies": {
     "aws-sdk": "^2.1.40",
+    "lodash": "^4.8.2",
     "moment": "^2.10.6",
     "restler": "^3.4.0",
+    "s3-upload-stream": "^1.0.7",
+    "sitemap": "^1.6.0",
+    "string-to-stream": "^1.0.1",
     "underscore": "^1.8.3",
-    "when": "^3.7.4"
+    "when": "^3.7.4",
+    "xmlbuilder": "^8.2.0"
   },
   "devDependencies": {
     "grunt": "0.4.*",

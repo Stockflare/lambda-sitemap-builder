@@ -1,4 +1,10 @@
 {
-  "fx_url": "http://fx.internal-stocktio.com",
-  "currency_url": "http://currency.internal-stocktio.com"
+  "search_url": "https://api.stockflare.com/search/filter",
+  "site_url": "https://stockflare.com",
+  "search_body": {
+    "conditions": { "sic": ">0" },
+    "page": "1"
+  },
+  "sitemap_bucket": "alpha.stockflare.com",
+  "max_pages": 30
 }
