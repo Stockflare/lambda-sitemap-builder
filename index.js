@@ -110,7 +110,7 @@ exports.handler = function(event, context) {
         });
       };
 
-      var chunks = _l.chunk(rics, 2000);
+      var chunks = _l.chunk(rics, 10000);
 
       when.iterate(function(index){
         return index + 1;
@@ -129,9 +129,6 @@ exports.handler = function(event, context) {
           var date = new Date();
 
           _.each(chunk, function(ric){
-            urls.push({
-              url: '#!/stocks/' + ric , changefreq: 'daily', priority: 0.5
-            });
             urls.push({
               url: '#!/stocks/' + ric , changefreq: 'daily', priority: 0.5, lastmod: date
             });
