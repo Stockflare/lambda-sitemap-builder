@@ -133,34 +133,7 @@ exports.handler = function(event, context) {
               url: '#!/stocks/' + ric , changefreq: 'daily', priority: 0.5
             });
             urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/upside', changefreq: 'daily', priority: 0.5, lastmod: date
-            });
-            urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/growth', changefreq: 'daily', priority: 0.5, lastmod: date
-            });
-            urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/wallStreet', changefreq: 'daily', priority: 0.5, lastmod: date
-            });
-            urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/profitable', changefreq: 'daily', priority: 0.5, lastmod: date
-            });
-            urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/dividends', changefreq: 'daily', priority: 0.5, lastmod: date
-            });
-            urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/peers', changefreq: 'daily', priority: 0.5, lastmod: date
-            });
-            urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/description', changefreq: 'daily', priority: 0.5, lastmod: date
-            });
-            urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/stats', changefreq: 'daily', priority: 0.5, lastmod: date
-            });
-            urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/latest', changefreq: 'daily', priority: 0.5, lastmod: date
-            });
-            urls.push({
-              url: '#!/stocks/' + ric + '/breakdown/worth', changefreq: 'daily', priority: 0.5, lastmod: date
+              url: '#!/stocks/' + ric , changefreq: 'daily', priority: 0.5, lastmod: date
             });
           });
 
