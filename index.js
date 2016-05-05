@@ -130,7 +130,7 @@ exports.handler = function(event, context) {
 
           _.each(chunk, function(ric){
             urls.push({
-              url: '#!/stocks/' + ric , changefreq: 'daily', priority: 0.5, lastmod: date
+              url: 'stocks/' + ric , changefreq: 'daily', priority: 0.5, lastmod: date
             });
           });
 
