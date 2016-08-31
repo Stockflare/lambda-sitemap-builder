@@ -37,10 +37,9 @@ exports.handler = function(event, context) {
 
         var get_rics = function(page) {
           return when.promise(function(resolve, reject, notify){
-            var search_body = _.extend(event.search_body, {page: page, select: "ric"});
-            rest.put(event.search_url, {
-              data: JSON.stringify(search_body),
-            }).on('success', function(data, response){
+            var search_body = _.extend(event.search_body, {page: page, select: "ric", per_page: 30});
+            rest.putJson(event.search_url, search_body)
+            .on('success', function(data, response){
               if (data.length > 0) {
                 _.each(data, function(stock){
                   rics.push(stock.ric);
@@ -52,6 +51,7 @@ exports.handler = function(event, context) {
               resolve();
             }).on('fail', function(data, response){
               console.log('Error:', data);
+              console.log(search_body);
               reject(data);
             });
           });
@@ -71,7 +71,7 @@ exports.handler = function(event, context) {
 
       });
     },
-    1)
+    0)
     .done(function(){
 
       var upload = function(content, filename) {
@@ -122,15 +122,14 @@ exports.handler = function(event, context) {
         return when.promise(function(resolve, reject, notify){
           var chunk = chunks[index];
           var urls = [
-            { url: '/' , changefreq: 'weekly', priority: 0.5 },
-            { url: '/landing' , changefreq: 'weekly', priority: 0.5 },
+            { url: '/' , changefreq: 'weekly', priority: 0.5 }
           ];
 
           var date = new Date();
 
           _.each(chunk, function(ric){
             urls.push({
-              url: 'stocks/' + ric , changefreq: 'daily', priority: 0.5, lastmod: date
+              url: event.stocks_path + ric , changefreq: 'daily', priority: 0.5, lastmod: date
             });
           });
 

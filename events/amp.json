@@ -1,0 +1,8 @@
+{
+  "search_url": "http://search.internal-stockflare.com/filter",
+  "site_url": "https://amp-api.stockflare.com",
+  "search_body": {"conditions": { "sic": ">0" }},
+  "sitemap_bucket": "amp-s3bucket-ffpfku8d517k",
+  "stocks_path": "stock?ric=",
+  "max_pages": 30
+}
