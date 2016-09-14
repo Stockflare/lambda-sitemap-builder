@@ -14,8 +14,7 @@ var builder = require('xmlbuilder');
 
 exports.handler = function(event, context) {
 
-  console.log('event');
-  console.log(event);
+  console.log('Record:', JSON.stringify(event, null, 2));
 
   var all_done = when.promise(function(all_done_resolve, all_done_reject, all_done_notify) {
 

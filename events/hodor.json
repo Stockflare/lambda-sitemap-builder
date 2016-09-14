@@ -1,8 +1,12 @@
 {
   "search_url": "http://search.internal-stockflare.com/filter",
   "site_url": "https://stockflare.com",
-  "search_body": {"conditions": { "sic": ">0" }},
-  "sitemap_bucket": "alpha.stockflare.com",
-  "stocks_path": "#!/stocks",
+  "search_body": {
+    "conditions": {
+      "sic": ">0"
+    }
+  },
+  "sitemap_bucket": "lambda-sitemap-builder-hodorbucket-1wjrtmsbahx0j",
+  "stocks_path": "stocks/",
   "max_pages": 30
 }
