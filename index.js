@@ -44,8 +44,8 @@ exports.handler = function(event, context) {
                   rics.push(stock.ric);
                 });
               }
-              console.log('Got page: ' + page);
-              console.log('Total Rics: ' + rics.length);
+              // console.log('Got page: ' + page);
+              // console.log('Total Rics: ' + rics.length);
               total_pages = parseInt(response.headers['x-api-pages']);
               resolve();
             }).on('fail', function(data, response){
@@ -96,7 +96,7 @@ exports.handler = function(event, context) {
           });
 
           upload.on('part', function (details) {
-            console.log(details);
+            // console.log(details);
           });
 
           upload.on('uploaded', function (details) {
