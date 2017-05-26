@@ -11,6 +11,8 @@ var fs = require('fs');
 var zlib = require('zlib');
 var str = require('string-to-stream');
 var builder = require('xmlbuilder');
+var languages = ['de', 'es', 'fr', 'he', 'hi', 'it', 'ja', 'pt', 'zh', 'cn', 'ar'];
+
 
 exports.handler = function(event, context) {
 
@@ -120,17 +122,65 @@ exports.handler = function(event, context) {
       function(index){
         return when.promise(function(resolve, reject, notify){
           var chunk = chunks[index];
-          var urls = [
-            { url: '/' , changefreq: 'weekly', priority: 0.5 }
-          ];
+          var urls = [];
+
+          var getHomeLinks = function() {
+            return _.map(languages, function(language) {
+              return {
+                lang: language,
+                url: 'https://' + language + '.stockflare.com'
+              }
+            })
+          };
+
+          if (event.add_languages) {
+            urls.push({
+              url: '/',
+              changefreq: 'weekly',
+              priority: 0.5,
+              links: getHomeLinks()
+            });
+          } else {
+            urls.push({
+              url: '/',
+              changefreq: 'weekly',
+              priority: 0.5
+            });
+          }
 
           var date = new Date();
 
-          _.each(chunk, function(ric){
-            urls.push({
-              url: event.stocks_path + ric , changefreq: 'daily', priority: 0.5, lastmod: date
+          // console.log('Doing Links')
+          var getStockLinks = function(ric) {
+            return _.map(languages, function(language) {
+              return {
+                lang: language,
+                url: 'https://' + language + '.stockflare.com/' + event.stocks_path + ric
+              }
+            })
+          }
+
+          if (event.add_languages) {
+            _.each(chunk, function(ric){
+              urls.push({
+                url: event.stocks_path + ric ,
+                changefreq: 'daily',
+                priority: 0.5,
+                links: getStockLinks(ric),
+                lastmod: date
+              });
             });
-          });
+          } else {
+            _.each(chunk, function(ric){
+              urls.push({
+                url: event.stocks_path + ric ,
+                changefreq: 'daily',
+                priority: 0.5,
+                lastmod: date
+              });
+            });
+          }
+
 
           // Create the sitemap in memory
           var sitemap = sm.createSitemap({
@@ -138,6 +188,8 @@ exports.handler = function(event, context) {
               cacheTime: 600000,  //600 sec (10 min) cache purge period
               urls: urls
           });
+
+          // console.log(sitemap.toString())
 
           // Write the sitempa file
           when(upload(sitemap.toString(), 'sitemap' + (index + 1) + '.xml.gz')).done(function(){
